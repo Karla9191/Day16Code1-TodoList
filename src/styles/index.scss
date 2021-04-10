@@ -17,6 +17,7 @@ body{
     align-items: center;
     justify-content: center;
     margin: 0;
+    background-color: grey;
 }
 
 .container{
@@ -37,4 +38,27 @@ body{
   padding-left: 0px;
   padding-right: 0px;
   display: inline-block;
+}
+
+
+.secondBG{
+    width: 850px;
+    height: auto;
+    background-color: white;
+    text-align: center;
+    padding: 25px;
+
+}
+
+li{
+    list-style-type: none;
+
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
 }
