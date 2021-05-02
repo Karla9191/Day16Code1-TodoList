@@ -35,9 +35,8 @@ export function TodosList(props) {
 								className="btnAgregar">
 								Agregar Tarea
 							</button>
-							<ul className="mt-5">
-								<li className="list-group-item">{todosList}</li>
-							</ul>
+							{/*<ul className="mt-5">
+								<li className="list-group-item">{todosList}</li></ul>*/}
 						</li>
 					</ul>
 				</div>
