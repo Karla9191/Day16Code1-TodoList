@@ -16,8 +16,6 @@ export function TodosList() {
 		setNuevaTarea("");
 	};
 
-	let cantidadLista = todosList.length;
-
 	const eliminarLista = key => {
 		const nuevaLista = todosList.filter(itemObj => {
 			return itemObj.key !== key;
@@ -30,6 +28,8 @@ export function TodosList() {
 		setNuevaTarea("");
 		console.log(nuevaTarea);
 	};
+
+	let cantidadLista = todosList.length;
 
 	return (
 		<>
@@ -58,7 +58,7 @@ export function TodosList() {
 									</tr>
 								</thead>
 
-								<div>
+								<div className="liP">
 									{todosList.map(itemObj => {
 										return (
 											<li
@@ -66,13 +66,13 @@ export function TodosList() {
 												key={itemObj.key}>
 												<p>{itemObj.list}</p>
 												<button
-													className="btn btn-danger btn-sm"
+													className="btnEliminar"
 													onClick={() =>
 														eliminarLista(
 															itemObj.key
 														)
 													}>
-													Borrar Tarea
+													Eliminar Tarea
 												</button>
 											</li>
 										);
