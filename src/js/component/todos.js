@@ -2,19 +2,33 @@ import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 export function TodosList(props) {
-	let [todosList, setTodosList] = useState([]);
+	let [todosList, setTodosList] = useState([
+		{ name: " ", done: false },
+		{ name: "tarea 2", done: false },
+		{ name: "tarea 3", done: false },
+		{ name: "tarea 4", done: false }
+	]);
+
+	let [nuevaTarea, setNuevaTarea] = useState("");
+
+	const taskList = () => {
+		return todosList.map(task => (
+			<tr key={task.name}>
+				<td>{task.name}</td>
+			</tr>
+		));
+	};
 
 	const handleChange = e => {
 		const value = e.target.value;
-		setTodosList(value);
+		setNuevaTarea(value);
 	};
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		console.log(todosList);
-		setTodosList("");
+		setNuevaTarea("");
+		console.log(nuevaTarea);
 	};
-
 	return (
 		<>
 			<form onSubmit={handleSubmit}>
@@ -25,20 +39,30 @@ export function TodosList(props) {
 							<input
 								type="text"
 								placeholder="Ingrese una tarea"
-								value={todosList}
+								value={nuevaTarea}
 								onChange={handleChange}
 								name="text"
 								className="todoAdd"
 							/>
 							<button
 								onClick={handleSubmit}
+								value={todosList}
 								className="btnAgregar">
 								Agregar Tarea
 							</button>
-							{/*<ul className="mt-5">
-								<li className="list-group-item">{todosList}</li></ul>*/}
 						</li>
 					</ul>
+					<div>
+						<table className="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Tarea agregada</th>
+									<th>Descartar tarea</th>
+								</tr>
+							</thead>
+							<tbody>{taskList()}</tbody>
+						</table>
+					</div>
 				</div>
 			</form>
 		</>
