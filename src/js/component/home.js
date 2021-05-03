@@ -1,21 +1,14 @@
 import React, { useState } from "react";
-import List from "./tasks";
 
-//include images into your bundle
-// import rigoImage from "../../img/rigo-baby.jpg";
-
-//create your first component
 export function Home() {
-	// UseState Hook el currentItem es la var con el valor default y el setCurrentiterm es la funcion que alimenta es useState
 	const [currentItem, setCurrentItem] = useState("");
 
-	// Alimenta un array
 	const [itemList, updateItemList] = useState([]);
-	// Funcion para que alimente el useState desde el input
+
 	const onChangeHandler = e => {
 		setCurrentItem(e.target.value);
 	};
-	//Funcion agregar tarea con btn
+
 	const addItemToList = () => {
 		// ...itemList muestra o jala items individuales y currentItem es el que se está agregando a la lista.
 		updateItemList([...itemList, { item: currentItem, key: Date.now() }]);
@@ -23,6 +16,13 @@ export function Home() {
 	};
 	//contador
 	let countItems = itemList.length;
+
+	const deleteItemFromList = key => {
+		const newList = itemList.filter(itemObj => {
+			return itemObj.key !== key;
+		});
+		updateItemList(newList);
+	};
 
 	return (
 		<div className="container">
@@ -54,10 +54,26 @@ export function Home() {
 							</div>
 							<ul className="list-group mt-5">
 								<li className="list-group-item">
-									<List
-										itemList={itemList}
-										updateItemList={updateItemList}
-									/>
+									<div>
+										{itemList.map(itemObj => {
+											return (
+												<li
+													className="list-group-item"
+													key={itemObj.key}>
+													<p>{itemObj.item}</p>
+													<button
+														className="btn btn-danger btn-sm"
+														onClick={() =>
+															deleteItemFromList(
+																itemObj.key
+															)
+														}>
+														Borrar Tarea
+													</button>
+												</li>
+											);
+										})}
+									</div>
 								</li>
 							</ul>
 							<div>{countItems} of items</div>
